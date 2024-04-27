@@ -1,0 +1,10 @@
+venv/*
+*.pyc
+django/es4c_manager/db.sqlite3
+django/es4c_manager/migrations/*
+django/es4c_manager/es4c_manager/migrations/*
+django/es4c_manager/es4c_manager/__pycache__/*
+django/es4c_manager/es4c_manager/main/__pycache__/*
+django/es4c_manager/main/migrations/*
+volumes/*
+.env
