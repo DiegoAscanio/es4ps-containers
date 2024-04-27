@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Change User{% endblock %}
+
+{% block content %}
+<style>
+    .center-flex {
+        display: flex;
+        justify-content: center;
+    }
+    .form-title {
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 32px;
+        text-align: center;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+    }
+    .form-group {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        margin-top: 10px;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    button:active {
+        background-color: #3e8e41;
+    }
+    .clear-link {
+        text-decoration: none;
+        color: white;
+    }
+</style>
+<div class="row">
+    <div class="center-flex">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-title form-group">
+                Update user information
+            </div>
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    <br>
+                    {{ field }}
+                    <br>
+                    {% for error in field.errors %}
+                        <span style="color: red;">{{ error }} </span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <div class="form-group">
+                <button type="button">
+                    <a class="clear-link" href="/change-password">Change Password</a>
+                </button>
+            </div>
+            <div class="form-group">
+                <button type="submit">Update User</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

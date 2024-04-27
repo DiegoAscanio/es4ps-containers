@@ -1,0 +1,61 @@
+<!-- verification/verify.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Verify User{% endblock %} 
+
+{% block content %}
+
+<script>
+    function verifyUser() {
+        code = document.getElementById("code").value;
+        url = code !== "" ? "/verify-email/" + code + "/" : "/verify-email/";
+        window.location.href = url;
+    }
+</script>
+
+<style>
+    .container {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .form-group {
+        margin-top: 10px;
+        text-align: center;
+    }
+    button {
+        background-color: #4caf50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        opacity: 0.9;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    button:active {
+        background-color: #3e8e41;
+    }
+</style>
+
+<h1>Verify your User</h1>
+<p>
+    Hello {{ user.first_name }}, <br />
+    An account has been created for you. Please click on the link sent to your
+    email to activate your account.
+</p>
+<p>You can also insert the code below to activate your account.</p>
+<div class="form-group">
+    <label for="code">Verification Code</label>
+    <br />
+    <input type="text" id="code" name="code" />
+    <br />
+</div>
+<div class="form-group">
+    <button onclick="verifyUser();">Verify User</button>
+</div>
+
+{% endblock %}

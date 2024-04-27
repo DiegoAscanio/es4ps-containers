@@ -1,0 +1,69 @@
+<!-- login/login.html -->
+
+{% extends "base.html" %}
+{% block title %} Login {% endblock %} 
+{% block content %}
+
+<style>
+    .center-flex {
+        display: flex;
+        justify-content: center;
+    }
+    .form-title {
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 32px;
+        text-align: center;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+    }
+    .form-group {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        margin-top: 10px;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    button:active {
+        background-color: #3e8e41;
+    }
+</style>
+
+<div class="row">
+    <div class="center-flex">
+        <form method="post" class="form">
+            {% csrf_token %}
+            <div class="form-group form-title">
+                Login
+            </div>
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                <br>
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label_tag }}
+                <br>
+                {{ form.password }}
+            </div>
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+            <div class="form-group">
+                <button onclick="window.location.href = '/register'; return false">Register <br> New User</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

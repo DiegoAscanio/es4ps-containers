@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block title %}Successful Activation{% endblock %}
+{% block content %}
+
+<style>
+    .container {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<div class="container">
+    <h1>Successful Activation</h1>
+    <p>
+        Hello {{user.first_name}}, your account has been successfully activated.
+        You can now log into any computer at your campus.
+    </p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+services:
+    init-certificates:
+        build:
+            context: ./init-certificates
+            dockerfile: Dockerfile
+            args:
+                - HOST_FQDN=${ES4C_MANAGER_HOST_FQDN}
+        image: diegoascanio/cefetmg:es4ps-init-certificates
+        volumes:
+            - "./volumes/certificates:/opt/certificates"
+    rabbitmq:
+        depends_on:
+            init-certificates: 
+              condition: service_completed_successfully
+        hostname: rabbitmq
+        build:
+            context: ./rabbit-mq
+            dockerfile: Dockerfile
+            args:
+                - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+                - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+                - RABBITMQ_DEFAULT_VHOST=${RABBITMQ_DEFAULT_VHOST}
+        image: diegoascanio/cefetmg:es4ps-rabbitmq
+        volumes:
+            - "./volumes/certificates:/opt/certificates"
+            - "./volumes/rabbitmq_data:/var/lib/rabbitmq"
+        ports:
+            - "5671:5671"
+            - "15671:15671"
+    samba:
+        depends_on:
+            - rabbitmq
+        hostname: ES4PSDC01
+        build:
+            context: ./samba
+            dockerfile: Dockerfile
+            args:
+                - SERVER_ROLE=${SERVER_ROLE}
+                - SERVER_HOSTNAME=${SERVER_HOSTNAME}
+                - SERVER_DNS_BACKEND=${SERVER_DNS_BACKEND}
+                - SERVER_IP=${SERVER_IP}
+                - SERVER_REALM=${SERVER_REALM}
+                - SERVER_DOMAIN=${SERVER_DOMAIN}
+                - SERVER_ADMIN_PASSWORD=${SERVER_ADMIN_PASSWORD}
+                - RABBITMQ_HOST=${RABBITMQ_HOST}
+                - RABBITMQ_USER=${RABBITMQ_USER}
+                - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+                - RABBITMQ_VHOST=${RABBITMQ_VHOST}
+        image: diegoascanio/cefetmg:es4ps-ad-dc
+        ports:
+            - "53:53"
+            - "53:53/udp"
+            - "88:88"
+            - "88:88/udp"
+            - "135:135"
+            - "137-138:137-138/udp"
+            - "139:139"
+            - "389:389"
+            - "445:445"
+            - "464:464"
+            - "464:464/udp"
+            - "636:636"
+            - "1024-1044:1024-1044"
+            - "3268-3269:3268-3269"
+        volumes:
+            - "./volumes/certificates:/opt/certificates"
+            - "./volumes/samba-data:/var/lib/samba"
+            - "./volumes/samba-config:/etc/samba"
+            - "./volumes/samba-logs:/var/log/samba"
+    django:
+        depends_on:
+            - rabbitmq
+        hostname: ES4PSDJANGO
+        build:
+            context: ./django
+            dockerfile: Dockerfile
+            args:
+                - ES4C_MANAGER_ALLOWED_EMAIL_DOMAINS=${ES4C_MANAGER_ALLOWED_EMAIL_DOMAINS}
+                - ES4C_MANAGER_SMTP_SERVER=${ES4C_MANAGER_SMTP_SERVER}
+                - ES4C_MANAGER_SMTP_PORT=${ES4C_MANAGER_SMTP_PORT}
+                - ES4C_MANAGER_SMTP_USERNAME=${ES4C_MANAGER_SMTP_USERNAME}
+                - ES4C_MANAGER_SMTP_PASSWORD=${ES4C_MANAGER_SMTP_PASSWORD}
+                - ES4C_MANAGER_HOST_FQDN=${ES4C_MANAGER_HOST_FQDN}
+                - ES4C_MANAGER_CELERY_BROKER_URL=${ES4C_MANAGER_CELERY_BROKER_URL}
+                - ES4C_MANAGER_CELERY_RESULT_BACKEND=${ES4C_MANAGER_CELERY_RESULT_BACKEND}
+                - SAMBA_ADMIN_PASSWORD=${SAMBA_ADMIN_PASSWORD}
+                - DJANGO_SUPERUSER_USERNAME=${DJANGO_SUPERUSER_USERNAME}
+                - DJANGO_SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL}
+                - DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD}
+        image: diegoascanio/cefetmg:es4ps-django
+        volumes:
+            - "./volumes/certificates:/opt/certificates"
+            - "./django/es4c_manager:/es4c_manager"
+    reverse-proxy:
+        build:
+            context: ./reverse-proxy
+            dockerfile: Dockerfile
+        volumes:
+            - "./volumes/certificates:/opt/certificates"
+        environment:
+            - HOST_FQDN=${ES4C_MANAGER_HOST_FQDN}
+        depends_on:
+            django:
+                condition: "service_started"
+        hostname: ES4PSRP01
+        ports:
+            - "80:80"
+            - "443:443"
+        image: diegoascanio/cefetmg:es4ps-reverse-proxy

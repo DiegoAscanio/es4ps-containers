@@ -1,0 +1,20 @@
+[req]
+distinguished_name = req_distinguished_name
+x509_extensions = v3_req
+
+[req_distinguished_name]
+countryName = Country Name (2 letter code)
+countryName_default = BR
+stateOrProvinceName = State or Province Name (full name)
+stateOrProvinceName_default = Minas Gerais
+localityName = Locality Name (eg, city)
+localityName_default = Belo Horizonte
+organizationName = Organization Name (eg, company)
+organizationName_default = Easy Samba for Public Services
+commonName = Common Name (e.g. server FQDN or YOUR name)
+commonName_default = ${HOST_FQDN}
+emailAddress = Email Address
+emailAddress_default = es4ps@${HOST_FQDN}
+
+[v3_req]
+basicConstraints = CA:FALSE
