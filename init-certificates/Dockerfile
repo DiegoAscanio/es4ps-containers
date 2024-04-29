@@ -18,6 +18,7 @@ RUN envsubst < /openssl.cnf.template > /openssl.cnf
 
 # Copy generate-certificates.sh to the container
 COPY generate-certificates.sh /generate-certificates.sh
+RUN chmod +x /generate-certificates.sh
 
 # Run the script
 CMD ["/generate-certificates.sh"]

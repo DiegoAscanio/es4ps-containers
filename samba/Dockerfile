@@ -18,6 +18,7 @@ ARG RABBITMQ_VHOST
 
 # Copy wait for certificates script
 COPY ./wait_for_certificates.sh /usr/local/bin/wait_for_certificates.sh
+RUN chmod +x /usr/local/bin/wait_for_certificates.sh
 
 # Verify that the /etc/hosts file on container correctly maps the hostname to the IP address
 RUN printf "#!/bin/bash\n\n\

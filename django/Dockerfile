@@ -45,6 +45,7 @@ RUN pip3 install -r /django-requirements.txt
 
 # Copy wait for certificate script
 COPY ./wait_for_certificates.sh /usr/local/bin/wait_for_certificates.sh
+RUN chmod +x /usr/local/bin/wait_for_certificates.sh
 
 # Make an entrypoint script inside /django
 RUN mkdir /django

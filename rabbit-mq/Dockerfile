@@ -48,6 +48,7 @@ COPY ./30-rabbitmq-management-https.conf /etc/rabbitmq/conf.d/30-rabbitmq-manage
 
 # Copy wait_for_certificates.sh script to wait for the certificates to be generated
 COPY ./wait_for_certificates.sh /usr/local/bin/wait_for_certificates.sh
+RUN chmod +x /usr/local/bin/wait_for_certificates.sh
 
 # Create a minimum entrypoint script that will call the wait_for_certificates.sh script and then exec the CMD
 RUN printf "#!/bin/bash\n\n\
