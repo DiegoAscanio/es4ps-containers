@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y \
     curl
 
 # Curl the requirements file from github repo into /django-requirements.txt file
-RUN curl -L https://raw.githubusercontent.com/DiegoAscanio/easy-samba-for-public-services/main/app/django/es4c_manager/requirements.txt -o /django-requirements.txt
+RUN curl -L https://raw.githubusercontent.com/DiegoAscanio/es4ps-containers/main/django/es4c_manager/requirements.txt -o /django-requirements.txt
 
 # Install the dependencies
 RUN pip3 install -r /django-requirements.txt
