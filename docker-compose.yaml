@@ -30,7 +30,7 @@ services:
     samba:
         depends_on:
             - rabbitmq
-        hostname: ES4PSDC01
+        hostname: ${SERVER_HOSTNAME}
         build:
             context: ./samba
             dockerfile: Dockerfile
