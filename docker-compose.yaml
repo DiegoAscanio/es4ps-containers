@@ -73,6 +73,7 @@ services:
                 - DJANGO_SUPERUSER_USERNAME=${DJANGO_SUPERUSER_USERNAME}
                 - DJANGO_SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL}
                 - DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD}
+                - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
         image: diegoascanio/cefetmg:es4ps-django
         volumes:
             - "./volumes/certificates:/opt/certificates"

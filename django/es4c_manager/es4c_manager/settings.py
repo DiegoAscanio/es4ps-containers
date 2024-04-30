@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-^_g9lp58z5way^(&^&+tos$=(3!n!l0_68q7%w+%$@n6!n&2zh"
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 # Application definition
@@ -149,3 +149,6 @@ CSRF_TRUSTED_ORIGINS = ['https://' + HOST_FQDN]
 CELERY_BROKER_URL = os.environ['ES4C_MANAGER_CELERY_BROKER_URL']
 CELERY_RESULT_BACKEND = os.environ['ES4C_MANAGER_CELERY_RESULT_BACKEND']
 
+# Settings for production
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
