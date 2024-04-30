@@ -23,7 +23,7 @@ RUN chmod +x /usr/local/bin/wait_for_certificates.sh
 # Verify that the /etc/hosts file on container correctly maps the hostname to the IP address
 RUN printf "#!/bin/bash\n\n\
 # Add entry to /etc/hosts\n\
-echo '%s %s %s' >> /etc/hosts\n\
+echo '%s %s.%s %s' >> /etc/hosts\n\
 # Add entry to /etc/resolv.conf\n\
 echo 'search %s' > /etc/resolv.conf\n\
 echo 'nameserver %s' >> /etc/resolv.conf\n\n\
@@ -42,7 +42,7 @@ source /usr/local/bin/wait_for_certificates.sh\n\n\
 # Start samba\n\
 /usr/sbin/samba\n\n\
 # Execute the main container command\n\
-exec \"\$@\"\n" "${SERVER_IP}" "${SERVER_HOSTNAME}" "${SERVER_DOMAIN}" "${SERVER_REALM}" "${SERVER_IP}" > /usr/sbin/entrypoint.sh
+exec \"\$@\"\n" "${SERVER_IP}" "${SERVER_HOSTNAME}" "${SERVER_REALM}" "${SERVER_HOSTNAME}" "${SERVER_REALM}" "${SERVER_IP}" > /usr/sbin/entrypoint.sh
 
 # Install samba and its required dependencies in non-interactive mode
 RUN apt-get update && \
