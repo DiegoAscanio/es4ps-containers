@@ -10,10 +10,15 @@
         margin-right: auto;
     }
 </style>
+<script>
+    setTimeout(() => {
+        window.location.href = '/';
+    }, 5000);
+</script>
 <div class="container">
     <h1>E-mail already verified</h1>
     <p>
-        Hello {{user.first_name}} you don't need to verify your email again.
+        Hello {{user.first_name}} you don't need to verify your email again. You'll be redirected to the main page in a few seconds.
     </p>
 </div>
 {% endblock %}

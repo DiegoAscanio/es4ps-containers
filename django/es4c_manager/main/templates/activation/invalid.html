@@ -12,9 +12,18 @@
     }
 </style>
 
+<script>
+    setTimeout(function() {
+        window.location.href = '/verify-email';
+    }, 5000);
+</script>
+
 <div class="container">
     <h1>Invalid Token</h1>
-    <p>Sorry, the token you provided is invalid.</p>
+    <p>
+        Sorry, the token you provided is invalid. You'll be redirected to the
+        activation page in a few seconds.
+    </p>
 </div>
 
 {% endblock %}

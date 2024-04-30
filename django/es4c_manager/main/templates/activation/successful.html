@@ -9,11 +9,19 @@
     }
 </style>
 
+<script>
+    setTimeout(() => {
+        window.location.href = '/';
+    }, 5000);
+</script>
+
 <div class="container">
     <h1>Successful Activation</h1>
     <p>
         Hello {{user.first_name}}, your account has been successfully activated.
         You can now log into any computer at your campus.
+
+        You'll be redirected to the main page in a few seconds.
     </p>
 </div>
 
