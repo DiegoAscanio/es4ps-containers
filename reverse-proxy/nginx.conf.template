@@ -14,6 +14,7 @@ http {
     proxy_read_timeout 300;
     proxy_connect_timeout 300;
     proxy_send_timeout 300;
+    include /etc/nginx/mime.types;
 
     # SSL parameters
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
@@ -36,6 +37,11 @@ http {
         server_name ${HOST_FQDN};
         ssl_certificate /opt/certificates/nginx_server_fullchain.pem;
         ssl_certificate_key /opt/certificates/nginx_server_privkey.pem;
+
+        location /static/ {
+            root /;
+        }
+
         location / {
             proxy_set_header Host ${DOLLAR}host;
             proxy_set_header X-Real-IP ${DOLLAR}remote_addr;

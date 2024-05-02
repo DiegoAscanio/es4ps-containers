@@ -71,6 +71,8 @@ if [[ ! -f db.sqlite3 ]]; then\n\
 fi\n\n\
 # wait for certificates\n\
 source /usr/local/bin/wait_for_certificates.sh;\n\n\
+# collect static files\n\
+python3 manage.py collectstatic;\n\
 # run the server\n\
 python3 manage.py runserver 0.0.0.0:8000" $DJANGO_SUPERUSER_USERNAME $DJANGO_SUPERUSER_USERNAME > /django/entrypoint.sh
 
