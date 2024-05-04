@@ -47,10 +47,11 @@ class CollegeUserRegistrationForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data['email']
         domain = email.split('@')[1]
-        if domain not in settings.ALLOWED_EMAIL_DOMAINS:
-            error = 'Email domain must be one of the following: ' + ', '.join(settings.ALLOWED_EMAIL_DOMAINS)
-            raise ValidationError(error)
-        return email
+        for allowed_domain in settings.ALLOWED_EMAIL_DOMAINS:
+            if re.match(domain, allowed_domain):
+                return email
+        error = 'Email domain must be one of the following: ' + ', '.join(settings.ALLOWED_EMAIL_DOMAINS)
+        raise ValidationError(error)
 
     def clean_password_1(self):
         email = self.cleaned_data['email']
