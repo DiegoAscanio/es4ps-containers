@@ -7,7 +7,7 @@ import re
 
 def _clean_password_1(password, email):
     email_username = email.split('@')[0]
-    domain = email.split('@')[1]
+    domain = email.split('@')[-1]
     if len(password) < 10:
         raise ValidationError('Password must be at least 10 characters long.')
     if not re.search(r'[A-Z]', password):
@@ -18,7 +18,13 @@ def _clean_password_1(password, email):
         raise ValidationError('Password must contain at least one digit.')
     if not re.search(r'\W', password):
         raise ValidationError('Password must contain at least one special character.')
-    if email in password or email_username in password or domain in password:
+    if (
+        email in password and email != ''
+    ) or (
+        email_username in password and email_username != ''
+    ) or (
+        domain in password and domain != ''
+    ):
         raise ValidationError('Password must not contain email or username.')
     return password
 
@@ -54,8 +60,10 @@ class CollegeUserRegistrationForm(forms.ModelForm):
         raise ValidationError(error)
 
     def clean_password_1(self):
-        email = self.cleaned_data['email']
-        password = self.cleaned_data['password_1']
+        email =\
+            self.cleaned_data['email'] if 'email' in self.cleaned_data else ''
+        password =\
+            self.cleaned_data['password_1'] if 'password_1' in self.cleaned_data else ''
         return _clean_password_1(password, email)
 
     def clean_password_2(self):
