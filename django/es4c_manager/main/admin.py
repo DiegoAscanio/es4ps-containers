@@ -5,7 +5,17 @@ from main.forms import CollegeUserRegistrationForm, CollegeUserChangeForm
 from main.models import CollegeUser
 from main.tasks import create_user, enable_account, update_user_attributes, delete_user
 
-# Register your models here.
+'''
+    This file contains configuration to enable CollegeUserModel operations
+    from the Django admin interface. This is extremely useful and until
+    now the only way to allow an IT admin to delete users from the system —
+    in Django as well in the Samba AD DC servers — since the CRUD methods
+    call Celery tasks (when appropriate) to reflect the operations on the
+    Samba AD DC servers.
+
+    In future releases other models will be added to the admin interface,
+    so this file will be updated to perform those changes.
+'''
 
 class CollegeUserAdmin(BaseUserAdmin):
     form = CollegeUserChangeForm
@@ -33,8 +43,8 @@ class CollegeUserAdmin(BaseUserAdmin):
     )
 
     def _create_user(self, username, password, **kwargs):
-        create_user.delay(username, password, **kwargs)
-        enable_account.delay(username)
+        create_user.delay(username, password, **kwargs) # a call to a celery task for user creation
+        enable_account.delay(username) # a call to a celery task to enable a user account
 
     def _update_user(self, username, **kwargs):
         update_user_attributes.delay(username, **kwargs)

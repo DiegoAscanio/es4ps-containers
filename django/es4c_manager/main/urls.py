@@ -1,6 +1,14 @@
 from django.urls import path
 from main.views import register, verify_email, index, update_user_attributes, login_view, logout_view, update_user_password
 
+'''
+    This file maps URLs that represent actions to the views responsible
+    for handling them. As for the current release, only 8 URLs are
+    enough to provide the functionalities for the MVP.
+
+    In future releases there'll be more URLs to handle new features
+'''
+
 urlpatterns = [
     path('', index, name='index'),
     path('login/', login_view, name='login'),

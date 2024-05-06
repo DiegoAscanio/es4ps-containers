@@ -6,6 +6,15 @@ import markdown as md
 import smtplib
 import unicodedata
 
+'''
+    This file contain the functions responsible to send email verification tokens to users.
+    The email is sent using the SMTP protocol, and the email content is written in markdown
+    and rendered to HTML using the markdown library.
+
+    This file will be removed in future releases if django's built-in email
+    functions are adopted.
+'''
+
 def normalize(s):
     return str(unicodedata.normalize('NFKD', s).encode('ascii', 'ignore'))
 
