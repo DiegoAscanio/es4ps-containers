@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" modified="2024-05-06T03:43:50.938Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0" etag="-Aj_Ok-hfX2R5EWdrEDu" version="24.3.1" type="device">
+  <diagram name="Página-1" id="X3UEPtJSmG0Z72v36bvv">
+    <mxGraphModel dx="1390" dy="1016" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="P12jpMXDeM0WPaifR6QC-1" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-174" y="163" width="186" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-13" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="P12jpMXDeM0WPaifR6QC-2" target="P12jpMXDeM0WPaifR6QC-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-14" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="P12jpMXDeM0WPaifR6QC-2" target="P12jpMXDeM0WPaifR6QC-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-15" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="P12jpMXDeM0WPaifR6QC-2" target="P12jpMXDeM0WPaifR6QC-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-2" value="" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="164" y="123.5" width="129" height="143" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-4" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="475" y="19" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-5" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="475" y="163" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-6" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="475" y="307" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-9" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="P12jpMXDeM0WPaifR6QC-7" target="P12jpMXDeM0WPaifR6QC-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-7" value="User self registration app (Django)" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-159.5" y="185" width="157" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-10" value="&lt;div&gt;RabbitMQ&lt;/div&gt;&lt;div&gt;Server&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="198.5" y="180" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-12" value="Celery Task" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="32" y="163" width="98" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-16" value="&lt;div&gt;Celery Task Forwarding&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;rotation=-30;" vertex="1" parent="1">
+          <mxGeometry x="293" y="63" width="98" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-17" value="&lt;div&gt;Celery Task Forwarding&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="318" y="150" width="98" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-18" value="&lt;div&gt;Celery Task Forwarding&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;rotation=30;" vertex="1" parent="1">
+          <mxGeometry x="325" y="249" width="98" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-19" value="&lt;div&gt;Samba ADDC&lt;/div&gt;&lt;div&gt;Worker 1&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="476.5" y="34" width="117" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-21" value="&lt;div&gt;Samba ADDC&lt;/div&gt;&lt;div&gt;Worker 2&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="476.5" y="178" width="117" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-22" value="" style="shape=waypoint;sketch=0;size=6;pointerEvents=1;points=[];fillColor=none;resizable=0;rotatable=0;perimeter=centerPerimeter;snapToPoint=1;" vertex="1" parent="1">
+          <mxGeometry x="525" y="229" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-23" value="" style="shape=waypoint;sketch=0;size=6;pointerEvents=1;points=[];fillColor=none;resizable=0;rotatable=0;perimeter=centerPerimeter;snapToPoint=1;" vertex="1" parent="1">
+          <mxGeometry x="525" y="246.5" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-24" value="" style="shape=waypoint;sketch=0;size=6;pointerEvents=1;points=[];fillColor=none;resizable=0;rotatable=0;perimeter=centerPerimeter;snapToPoint=1;" vertex="1" parent="1">
+          <mxGeometry x="525" y="262.5" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="P12jpMXDeM0WPaifR6QC-25" value="&lt;div&gt;Samba ADDC&lt;/div&gt;&lt;div&gt;Worker N&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="476.5" y="322" width="117" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
