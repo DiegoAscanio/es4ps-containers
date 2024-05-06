@@ -61,3 +61,15 @@ There are some features that are expected to be added to the ES4PS-Containers co
 5. **Managing groups of users and their permissions in samba server through the django web app**. This is a useful feature that will be added to future releases if it doesn't add too much of complexity to the ES4PS platform.
 6. **Managing computers in a domain through the django web app**. This is a useful feature that is expected in future releases since its implementation is not so complex and it will help staff users to manage its AD/DC domain in a more efficient way. Altough in the current release, any staff user can manage its domain through Windows RSAT (Remote Server Administration Tools).
 7. **Create different profiles for users in the django web app as well as in the samba server**. This is a feature that is expected to be added in future releases since it will enhance the ES4PS system with the capability of management by different IT staff users with different permissions and roles.
+8. **Adding support for file sharing and printing services in the samba server**. This is a feature that is expected to be added in future releases altough it must be evaluated with the apropriate criteria to not add too much complexity to the ES4PS platform as well as:
+    - To not make it too heavy to run in a simple server.
+    - To not make it too complex to manage by the IT staff users.
+    - To don't frustrate the end users with limitations in the file sharing (such as file size limitations, file types limitations, etc.).
+    - To protect the end users from malicious files that could be shared in the samba server.
+    - To protect the network from attacks that could be made through the file sharing and printing services.
+
+If these features, specially the 8th one, won't degrade ES4PS performance, security, simplicity and availability, they will be added to the ES4PS platform in future releases. Features 1, 2 and 3 will certainly figure in the next release of the ES4PS platform.
+
+If you're willing to contribute to the ES4PS-Containers composition, you can start by studying the files mentioned in the list above and then you can fork this repository, make the necessary changes and submit a pull request to the dev repository. If your changes are approved, they will be merged into the dev repository and will be available in alpha and beta releases of the ES4PS platform. When they are mature enough, they will be merged into the main repository and will be available in the stable releases of the ES4PS platform.
+
+For more information and any questions, please contact the author of this repository through the e-mail [ascanio@cefetmg.br](mailto:ascanio@cefetmg.br). Contributions are really appreciated and the author thanks you in advance for your interest in contributing to the ES4PS platform.
