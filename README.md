@@ -1,4 +1,4 @@
-#ES4PS-Containers
+# ES4PS-Containers
 
 ES4PS-Containers are the core element within the ES4PS platform since it makes it possible to run all necessary services to provide any organization with a system that supports users' self-registration in a Django / celery (rabbit mq) / samba configuration that makes everything work. 
 
