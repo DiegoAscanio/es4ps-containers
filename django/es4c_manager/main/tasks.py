@@ -1,7 +1,7 @@
 
 from __future__ import unicode_literals
 
-from .celery import app
+from es4c_manager.celery import app
 
 from samba.samdb import SamDB
 from samba import param
