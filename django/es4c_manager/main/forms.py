@@ -108,7 +108,7 @@ class CollegeUserRegistrationForm(forms.ModelForm):
 
     def clean_email(self):
         '''
-            In this method the main feature of ES4PS platform is achieved:
+            In this method the main feature of ES4ALL platform is achieved:
             The application will restrict user registration to only the
             allowed email domains from an organization and no one
             outside this organization will be able to register.

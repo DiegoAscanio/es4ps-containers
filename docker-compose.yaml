@@ -56,7 +56,7 @@ services:
     django:
         depends_on:
             - rabbitmq
-        hostname: ES4PSDJANGO
+        hostname: ES4ALLDJANGO
         build:
             context: ./django
             dockerfile: Dockerfile
@@ -91,7 +91,7 @@ services:
         depends_on:
             django:
                 condition: "service_started"
-        hostname: ES4PSRP01
+        hostname: ES4ALLRP01
         ports:
             - "80:80"
             - "443:443"

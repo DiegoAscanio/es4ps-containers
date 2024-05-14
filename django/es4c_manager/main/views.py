@@ -28,7 +28,7 @@ from django.contrib.auth import update_session_auth_hash
     someone who does not have an account (so, who's not authenticated)
     tries to register a new one. Please read the comments in the private
     view _perform_registration to understand how a new user is created
-    within the ES4PS ecosystem.
+    within the ES4ALL ecosystem.
 '''
 
 # Create your views here.
@@ -196,7 +196,7 @@ def update_user_password(request):
 def _proceed_user_activation(request, token):
     '''
         This is the view that check the user bond with the organization
-        that uses ES4PS for AD/DC services. A random token is generated
+        that uses ES4ALL for AD/DC services. A random token is generated
         for the user and sent to its email when it registers itself in
         the system.
 
@@ -204,7 +204,7 @@ def _proceed_user_activation(request, token):
         the system, or input the token in the verify email page, this
         view is called to check if the token is valid and if so, the
         user is activated and can start using computers managed by the
-        ES4PS Samba AD/DC servers.
+        ES4ALL Samba AD/DC servers.
 
         For default any new user registered is disable in samba, but
         when the user inputs its correct token, its verified flag
