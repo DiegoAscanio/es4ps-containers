@@ -1,10 +1,4 @@
-#
-# NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
-#
-# PLEASE DO NOT EDIT IT DIRECTLY.
-#
-
-FROM rabbitmq:3.13
+FROM --platform=linux/386 rabbitmq:3.12-alpine
 
 # receive args from building
 
@@ -28,9 +22,6 @@ RUN set eux; \
 	cp /plugins/rabbitmq_management-*/priv/www/cli/rabbitmqadmin /usr/local/bin/rabbitmqadmin; \
 	[ -s /usr/local/bin/rabbitmqadmin ]; \
 	chmod +x /usr/local/bin/rabbitmqadmin; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends python3; \
-	rm -rf /var/lib/apt/lists/*; \
 	rabbitmqadmin --version
 
 # Start the rabbitmq server in dettached mode to create the 

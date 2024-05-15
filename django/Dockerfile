@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM --platform=linux/386 debian:latest 
 
 # Set ARGS
 

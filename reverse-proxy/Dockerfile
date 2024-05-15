@@ -1,4 +1,4 @@
-FROM nginx
+FROM --platform=linux/386 nginx 
 
 # Set ARGS
 

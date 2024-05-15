@@ -1,5 +1,4 @@
-# Use the official Ubuntu 22.04 LTS image as the base image
-FROM ubuntu:22.04
+FROM --platform=linux/386 debian:latest 
 
 # Define the following arguments needed to samba in non-interactive mode
 
