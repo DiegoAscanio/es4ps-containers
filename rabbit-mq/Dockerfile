@@ -19,6 +19,11 @@ RUN set eux; \
 	rm -f /etc/rabbitmq/conf.d/20-management_agent.disable_metrics_collector.conf; \
 # grab "rabbitmqadmin" from inside the "rabbitmq_management-X.Y.Z" plugin folder
 # see https://github.com/docker-library/rabbitmq/issues/207
+# install python3 on alpine
+    apk add --no-cache python3; \
+    ln -sf /usr/bin/python3 /usr/bin/python; \
+    python3 -m ensurepip; \
+    pip3 install --no-cache --upgrade pip setuptools; \
 	cp /plugins/rabbitmq_management-*/priv/www/cli/rabbitmqadmin /usr/local/bin/rabbitmqadmin; \
 	[ -s /usr/local/bin/rabbitmqadmin ]; \
 	chmod +x /usr/local/bin/rabbitmqadmin; \
