@@ -43,7 +43,7 @@ RUN apt-get update && apt-get install -y \
 RUN curl -L https://raw.githubusercontent.com/DiegoAscanio/es4ps-containers/main/django/es4c_manager/requirements.txt -o /django-requirements.txt
 
 # Install the dependencies
-RUN pip3 install -r /django-requirements.txt
+RUN pip3 install --break-system-packages -r /django-requirements.txt
 
 # Copy wait for certificate script
 COPY ./wait_for_certificates.sh /usr/local/bin/wait_for_certificates.sh

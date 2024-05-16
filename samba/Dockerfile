@@ -48,7 +48,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install acl attr samba winbind libpam-winbind libnss-winbind krb5-config krb5-user dnsutils python3-setproctitle python3-samba python3-pip -y
 
 # Install celery
-RUN pip3 install celery
+RUN pip3 install --break-system-packages celery
 
 # Provision Samba AD DC in non-interactive mode
 RUN rm /etc/samba/smb.conf
