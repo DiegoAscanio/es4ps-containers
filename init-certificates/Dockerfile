@@ -1,4 +1,4 @@
-FROM --platform=linux/386 debian:latest
+FROM --platform=linux/386 i386/alpine:latest
 
 # Set ARGS
 
@@ -7,8 +7,8 @@ ARG HOST_FQDN
 # Set environment variables from ARGS
 ENV HOST_FQDN=${HOST_FQDN}
 
-# Upgrade the system and install openssl
-RUN apt-get update && apt-get upgrade -y && apt-get install -y openssl gettext-base
+# Upgrade the system and install required packages
+RUN apk update && apk add --no-cache openssl gettext bash envsubst
 
 # Copy openssl.cnf.template to the container
 COPY openssl.cnf.template /

@@ -1,4 +1,4 @@
-FROM --platform=linux/386 debian:latest 
+FROM --platform=linux/386 i386/alpine:latest
 
 # Define the following arguments needed to samba in non-interactive mode
 
@@ -41,14 +41,21 @@ source /usr/local/bin/wait_for_certificates.sh\n\n\
 # Start samba\n\
 /usr/sbin/samba\n\n\
 # Execute the main container command\n\
-exec \"\$@\"\n" "${SERVER_IP}" "${SERVER_HOSTNAME}" "${SERVER_REALM}" "${SERVER_HOSTNAME}" "${SERVER_REALM}" "${SERVER_IP}" > /usr/sbin/entrypoint.sh
+exec \"\$@\"\n" "${SERVER_IP}" "${SERVER_HOSTNAME}" "${SERVER_REALM}" "${SERVER_HOSTNAME}" "${SERVER_REALM}" "${SERVER_IP}" > /entrypoint.sh
+
+# Add pin to the alpine edge repository
+RUN echo "@edge https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
+
+# Install chrony from the alpine edge repository
+RUN apk update && \
+    apk add --no-cache chrony@edge chrony-doc@edge
 
 # Install samba and its required dependencies in non-interactive mode
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install acl attr samba winbind libpam-winbind libnss-winbind krb5-config krb5-user dnsutils python3-setproctitle python3-samba python3-pip -y
+RUN apk update && \
+    apk add --no-cache acl attr samba-dc samba-winbind pam-winbind samba-libnss-winbind krb5 krb5-dev bind-tools py3-setproctitle py3-samba python3 py3-pip bash
 
 # Install celery
-RUN pip3 install --break-system-packages celery
+RUN pip install --break-system-packages celery
 
 # Provision Samba AD DC in non-interactive mode
 RUN rm /etc/samba/smb.conf
@@ -73,10 +80,10 @@ RUN cp -r /var/lib/samba /var/lib/samba.initial
 COPY samba_user_management /opt/celery/samba_user_management
 
 # Make the entrypoint script executable
-RUN chmod +x /usr/sbin/entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Set the entrypoint script as the main container command
-ENTRYPOINT ["/usr/sbin/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 
 # Start celery worker to create (and update) samba users
 WORKDIR /opt/celery

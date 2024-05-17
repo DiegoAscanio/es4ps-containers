@@ -1,4 +1,4 @@
-FROM --platform=linux/386 debian:latest 
+FROM --platform=linux/386 i386/alpine:latest 
 
 # Set ARGS
 
@@ -32,25 +32,21 @@ ENV DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD}
 ENV DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add --no-cache \
     python3 \
-    python3-pip \
-    python3-samba \
-    python-is-python3 \
-    curl
-
+    py3-pip \
+    py3-samba \
+    curl \
+    bash
 # Curl the requirements file from github repo into /django-requirements.txt file
 RUN curl -L https://raw.githubusercontent.com/DiegoAscanio/es4ps-containers/main/django/es4c_manager/requirements.txt -o /django-requirements.txt
 
 # Install the dependencies
-RUN pip3 install --break-system-packages -r /django-requirements.txt
+RUN pip install --break-system-packages -r /django-requirements.txt
 
 # Copy wait for certificate script
-COPY ./wait_for_certificates.sh /usr/local/bin/wait_for_certificates.sh
-RUN chmod +x /usr/local/bin/wait_for_certificates.sh
-
-# Make an entrypoint script inside /django
-RUN mkdir /django
+COPY ./wait_for_certificates.sh /wait_for_certificates.sh
+RUN chmod +x /wait_for_certificates.sh
 
 RUN printf "#!/bin/bash\n\n\
 # if there's no database make migrations, migrate, and create superuser\n\
@@ -70,14 +66,16 @@ if [[ ! -f db.sqlite3 ]]; then\n\
     python3 manage.py createsuperuser --noinput --first_name=%s --last_name=%s;\n\
 fi\n\n\
 # wait for certificates\n\
-source /usr/local/bin/wait_for_certificates.sh;\n\n\
+source /wait_for_certificates.sh;\n\n\
 # collect static files\n\
 python3 manage.py collectstatic;\n\
 # run the server\n\
-python3 manage.py runserver 0.0.0.0:8000" $DJANGO_SUPERUSER_USERNAME $DJANGO_SUPERUSER_USERNAME > /django/entrypoint.sh
+python3 manage.py runserver 0.0.0.0:8000" $DJANGO_SUPERUSER_USERNAME $DJANGO_SUPERUSER_USERNAME > /entrypoint.sh
+
+RUN cat /entrypoint.sh
 
 # Make the entrypoint script executable
-RUN chmod +x /django/entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Expose the port
 EXPOSE 8000
@@ -86,4 +84,4 @@ EXPOSE 8000
 WORKDIR /es4c_manager
 
 # Run the entrypoint script
-ENTRYPOINT ["/django/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]

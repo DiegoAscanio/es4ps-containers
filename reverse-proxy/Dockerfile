@@ -1,7 +1,6 @@
-FROM --platform=linux/386 nginx 
+FROM --platform=linux/386 nginx:alpine
 
 # Set ARGS
-
 ARG HOST_FQDN
 
 # Set environment variables
@@ -10,6 +9,9 @@ ENV DOLLAR="\$"
 
 # Copy the nginx configuration file template
 COPY nginx.conf.template /etc/nginx/nginx.conf.template
+
+# Install bash and envsubst
+RUN apk update && apk add --no-cache bash envsubst
 
 # Create an entrypoint script to replace environment variables in the nginx configuration file
 RUN printf "#!/bin/bash\n\n\
