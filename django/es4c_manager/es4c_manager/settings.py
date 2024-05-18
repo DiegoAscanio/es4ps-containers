@@ -138,6 +138,7 @@ VERIFICATION_EMAIL_SETTINGS = {
     'smtp_server': os.environ['ES4C_MANAGER_SMTP_SERVER'],
     'smtp_port': os.environ['ES4C_MANAGER_SMTP_PORT'],
     'smtp_username': os.environ['ES4C_MANAGER_SMTP_USERNAME'],
+    'smtp_sender': os.environ['ES4C_MANAGER_SMTP_SENDER'],
     'smtp_password': os.environ['ES4C_MANAGER_SMTP_PASSWORD'],
 }
 HOST_FQDN = os.environ['ES4C_MANAGER_HOST_FQDN']
