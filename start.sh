@@ -2,5 +2,5 @@
 
 export $(cat ./.env | xargs)
 
-#docker compose up -d
-docker compose up
+docker compose up -d
+#docker compose up

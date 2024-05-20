@@ -125,7 +125,7 @@ class CollegeUserRegistrationForm(forms.ModelForm):
         email = self.cleaned_data['email']
         domain = email.split('@')[1]
         for allowed_domain in settings.ALLOWED_EMAIL_DOMAINS:
-            if re.match(domain, allowed_domain):
+            if re.match(allowed_domain, domain):
                 return email
         error = 'Email domain must be one of the following: ' + ', '.join(settings.ALLOWED_EMAIL_DOMAINS)
         raise ValidationError(error)

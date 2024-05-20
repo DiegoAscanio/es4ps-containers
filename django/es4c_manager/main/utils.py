@@ -42,7 +42,7 @@ email_subject_text = 'ES4C Email Verification — {name}, please verify your ema
 def send_email_verification_token(user):
     email_settings = settings.VERIFICATION_EMAIL_SETTINGS
     message = MIMEMultipart()
-    message['From'] = email_settings['smtp_username']
+    message['From'] = email_settings['smtp_sender']
     message['To'] = user.email
     message['Subject'] = email_subject_text.format(name = user.first_name + ' ' + user.last_name)
     email_content = md.markdown(
