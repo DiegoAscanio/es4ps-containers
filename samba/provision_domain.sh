@@ -14,7 +14,7 @@ if [ ! -f /var/lib/samba/private/secrets.tdb ]; then
   cp -r /var/lib/samba /var/lib/samba.initial;
 
   # enable dns forwarder
-  cat /etc/samba/smb.conf | sed 's/dns forwarder =.*/dns forwarder = ${SERVER_IP} 8.8.4.4/' | envsubst > /tmp/aux;
+  cat /etc/samba/smb.conf | sed 's/dns forwarder =.*/dns forwarder = 1.1.1.1/' | envsubst > /tmp/aux;
   mv /tmp/aux /etc/samba/smb.conf;
 
 fi
