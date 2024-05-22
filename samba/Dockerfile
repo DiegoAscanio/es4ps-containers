@@ -48,7 +48,7 @@ RUN apk update && \
 
 # Install samba and its required dependencies in non-interactive mode
 RUN apk update && \
-    apk add --no-cache acl attr samba-dc samba-winbind pam-winbind samba-libnss-winbind krb5 krb5-dev bind-tools py3-setproctitle py3-samba python3 py3-pip bash
+    apk add --no-cache acl attr samba-dc samba-winbind pam-winbind samba-libnss-winbind krb5 krb5-dev bind-tools py3-setproctitle py3-samba python3 py3-pip bash envsubst
 
 # Install celery
 RUN pip install --break-system-packages celery
