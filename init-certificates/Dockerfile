@@ -1,4 +1,4 @@
-FROM --platform=linux/386 i386/alpine:latest
+FROM alpine:latest
 
 # Set ARGS
 
