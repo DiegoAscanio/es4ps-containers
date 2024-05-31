@@ -1,4 +1,4 @@
-FROM --platform=linux/386 i386/alpine:latest
+FROM alpine:latest
 
 # Define the following arguments needed to samba in non-interactive mode
 
@@ -23,6 +23,10 @@ RUN chmod +x /usr/local/bin/wait_for_certificates.sh
 COPY ./provision_domain.sh /usr/local/sbin/provision_domain.sh
 RUN chmod +x /usr/local/sbin/provision_domain.sh
 
+# Copy trim dns script
+COPY ./trim_dns.sh /usr/local/sbin/trim_dns.sh
+RUN chmod +x /usr/local/sbin/trim_dns.sh
+
 # Verify that the /etc/hosts file on container correctly maps the hostname to the IP address
 RUN printf "#!/bin/bash\n\n\
 # Add entry to /etc/hosts\n\
@@ -34,6 +38,8 @@ echo 'nameserver %s' >> /etc/resolv.conf\n\n\
 source /usr/local/bin/wait_for_certificates.sh\n\n\
 # Provision the domain\n\
 source /usr/local/sbin/provision_domain.sh\n\n\
+# Trim DNS\n\
+# source /usr/local/sbin/trim_dns.sh\n\n\
 # Start samba\n\
 /usr/sbin/samba\n\n\
 # Execute the main container command\n\

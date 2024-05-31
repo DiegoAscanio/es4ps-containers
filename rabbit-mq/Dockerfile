@@ -1,4 +1,4 @@
-FROM --platform=linux/386 rabbitmq:3.12-alpine
+FROM rabbitmq:3.12-alpine
 
 # receive args from building
 

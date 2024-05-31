@@ -6,9 +6,6 @@ if [ ! -f /var/lib/samba/private/secrets.tdb ]; then
   # Provision the domain
   samba-tool domain provision --server-role=${SERVER_ROLE} --host-name=${SERVER_HOSTNAME} --dns-backend=${SERVER_DNS_BACKEND} --realm=${SERVER_REALM} --domain=${SERVER_DOMAIN} --adminpass=${SAMBA_ADMIN_PASSWORD} --use-rfc2307;
 
-  # Configure Kerberos to use the Samba AD DC as the KDC
-  cp /var/lib/samba/private/krb5.conf /etc/krb5.conf;
-
   # Backup the original samba configurations files
   cp -r /etc/samba /etc/samba.initial;
   cp -r /var/lib/samba /var/lib/samba.initial;
@@ -18,3 +15,6 @@ if [ ! -f /var/lib/samba/private/secrets.tdb ]; then
   mv /tmp/aux /etc/samba/smb.conf;
 
 fi
+
+# Configure Kerberos to use the Samba AD DC as the KDC
+cp /var/lib/samba/private/krb5.conf /etc/krb5.conf;

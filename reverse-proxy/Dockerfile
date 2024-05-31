@@ -1,4 +1,4 @@
-FROM --platform=linux/386 nginx:alpine
+FROM nginx:alpine
 
 # Set ARGS
 ARG HOST_FQDN
