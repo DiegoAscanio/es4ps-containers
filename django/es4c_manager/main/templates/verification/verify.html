@@ -44,21 +44,12 @@
 <h1>Verify your User</h1>
 <p>
     Hello {{ user.first_name }}, <br />
+    An account has been created for you. Please click on the link sent to your
+    email to activate your account.
 
-    An account has been created for you. Please inform the verification code
-    available in the e-mail sent to you. For this proof of concept setup
-    you can't click on the link attached to the e-mail as it will redirect you
-    to a page that does not resolves to the correct IP address. Only the
-    user self registration client VM resolves to the correct address, so
-    that's why it is necessary to input the code here. <br/><br/>
-
-    If you did not receive the email, please check your spam folder. <br/><br/>
-
-    Also, for this proof of concept version, e-mails are sent through twilio's
-    SendGrid API and for this reason, the e-mails can be delayed. So, please
-    wait for a few minutes for the e-mail to arrive.
+    If you did not receive the email, please check your spam folder.
 </p>
-<p>Insert the verification code to activate your account.</p>
+<p>You can also insert the code below to activate your account.</p>
 <div class="form-group">
     <label for="code">Verification Code</label>
     <br />
