@@ -2,4 +2,4 @@
 
 export $(cat ./.env | xargs)
 
-docker-compose down
+docker compose down
